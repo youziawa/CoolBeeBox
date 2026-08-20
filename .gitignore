@@ -1,0 +1,36 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# JavaScript dependencies and build products
+**/node_modules/
+**/dist/
+**/coverage/
+
+# ESP-IDF build products and managed downloads
+**/build/
+**/managed_components/
+**/.espressif/
+**/sdkconfig.old
+
+# Python environments and cache
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+
+# Training scratch data and generated artefacts
+**/_tmp_artifacts/
+**/_tmp_fake_data/
+**/artifacts_full_gpu/
+**/esp-ppq.zip
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
