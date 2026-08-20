@@ -49,7 +49,7 @@ flowchart LR
 ├─ frontend/                         # Vue 3 + Vite 前端工程
 │  ├─ src/views/                     # 仪表盘、实时、历史与 AI 页面
 │  └─ src/stores/                    # MQTT 与仪表盘状态管理
-├─ backend/                          # 后端占位目录
+├─ backend/                          # Node.js + Express 后端服务
 └─ README.md
 ```
 
@@ -107,11 +107,11 @@ npm run dev
 npm run build
 ```
 
-前端的 MQTT 连接逻辑位于 `frontend/src/stores/mqtt.js`；请将 Broker 的 WebSocket 地址、端口、用户名和密码配置为自己的服务。前端包含历史记录和 AI 分析界面，但历史数据/API 服务需要由实际后端提供。
+前端的 MQTT 连接逻辑位于 `frontend/src/stores/mqtt.js`；请将 Broker 的 WebSocket 地址、端口、用户名和密码配置为自己的服务。历史记录和 AI 分析页面由 `backend/` 中的 API 服务提供。
 
 ## 后端状态
 
-原始 `CoolBeeBox-API` 目录中的 `.env`、`docker-compose.yml`、`package.json` 和 `server.js` 均为空文件，因此没有可迁移的后端实现。本仓库在 `backend/` 中保留了占位说明。若后续补充 API，建议将 MQTT 消费、数据持久化、历史查询、CSV 导出和模型 API 代理集中放置于该目录，并通过 `.env.example` 提供非敏感配置模板。
+后端位于 `backend/`，使用 Node.js + Express + MySQL。当前实现提供历史数据查询、统计信息、健康检查，以及 DeepSeek AI 报告/对话接口代理。使用前请复制 `backend/.env.example` 为 `backend/.env`，再填写数据库和 API 密钥；`.env` 已被忽略，绝不能提交。Docker 部署配置位于 `backend/docker-compose.yml`，其中默认使用外部 Docker 网络 `1panel-network`，请按部署环境调整。
 
 ## 开发建议
 

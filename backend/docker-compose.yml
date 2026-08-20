@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  coolbeebox-api:
+    container_name: coolbeebox-api
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./package.json:/app/package.json:ro
+      - ./server.js:/app/server.js:ro
+      - ./.env:/app/.env:ro
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    command: sh -c "npm install && node server.js"
+    restart: unless-stopped
+    networks:
+      - 1panel-network
+
+networks:
+  1panel-network:
+    external: true
